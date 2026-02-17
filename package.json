@@ -1,12 +1,37 @@
 {
   "name": "material-icon-generator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MaterialIcon component generator.",
+  "bin": {
+    "mi": "./dist/main.js"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "main": "./dist/main.js",
+  "scripts": {
+    "build": "tsc && cp -r src/data src/templates dist",
+    "start": "ts-node src/main.ts"
+  },
+  "keywords": [
+    "svelte",
+    "icons",
+    "typescript",
+    "interface",
+    "cli",
+    "generator"
+  ],
   "license": "MIT",
   "author": "Ankur Seth",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "dependencies": {
+    "argparse": "^2.0.1",
+    "handlebars": "^4.7.8"
+  },
+  "devDependencies": {
+    "@types/argparse": "^2.0.17",
+    "@types/node": "^25.2.3"
   }
 }

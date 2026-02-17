@@ -1,0 +1,30 @@
+
+<script lang="ts">
+	import type { ClassValue } from 'svelte/elements';
+
+	interface Props {
+		icon: SvigIconName,
+		size?: number,
+		class?: ClassValue,
+		hidden?: boolean
+	}
+	let { icon, size=24, hidden=false, ...props }: Props = $props();
+	let px = $derived(`${size}px`);
+</script>
+
+<script lang="ts" module>
+	export type SvigIconName = {{{ nametype }}};
+	export const SvigIconsAll: SvigIconName[] = [{{{ iconsArray }}}];
+</script>
+
+<div style:height={px} style:width={px} class={props.class || ""} {hidden}>
+	{#if icon === "{{firstIcon.name}}" }
+		{{{ firstIcon.svg }}}
+	{{#each restIcons}}
+	{:else if icon === "{{this.name}}" }
+		{{{ this.svg }}}
+	{{/each}}
+	{:else}
+		{{{ unknownIcon.svg }}}
+	{/if}
+</div>
