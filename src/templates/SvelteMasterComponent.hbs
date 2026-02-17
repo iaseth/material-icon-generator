@@ -8,7 +8,7 @@
 		class?: ClassValue,
 		hidden?: boolean
 	}
-	let { icon, size=24, hidden=false, ...props }: Props = $props();
+	let { icon, size=24, hidden=false, class: cls }: Props = $props();
 	let px = $derived(`${size}px`);
 </script>
 
@@ -17,8 +17,8 @@
 	export const MaterialIconsAll: MaterialIconName[] = [{{{ iconsArray }}}];
 </script>
 
-<div style:height={px} style:width={px} class={props.class || ""} {hidden}>
-	<svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 -960 960 960" width="100%" fill="currentColor">
+<div style:height={px} style:width={px} class={cls} {hidden}>
+	<svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 24 24" width="100%" fill="currentColor">
 		{#if icon === "{{firstIcon.name}}" }
 			<path d="{{{ firstIcon.pathd }}}" />
 		{{#each restIcons}}
