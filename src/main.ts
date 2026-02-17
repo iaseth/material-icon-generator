@@ -8,7 +8,7 @@ import { addIconsCommand, removeIconsCommand, generateIconsCommand, listIconsCom
 
 function main() {
 	const parser = new ArgumentParser({
-		description: 'svig - Command-line tool for generating Svelte Icon Components',
+		description: 'mi - Command-line tool for generating MaterialIcon Component for Svelte',
 	});
 
 	// Define arguments

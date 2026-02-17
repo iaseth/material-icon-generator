@@ -1,5 +1,5 @@
 import { IconDS, generateMasterComponentOnDisk, icons } from './icon.js';
-import { getSvigConfig, saveSvigConfig, svigConfigPath } from './config.js';
+import { getMiConfig, saveMiConfig, miConfigPath } from './config.js';
 import { getSvelteComponentPath } from './utils.js';
 
 
@@ -14,7 +14,7 @@ export function addIconsCommand (iconNames: string[], props: CommandProps) {
 		console.log(`Please provide icons to add!`); return;
 	}
 
-	const config = getSvigConfig();
+	const config = getMiConfig();
 	for (const iconName of iconNames) {
 		const icon = icons.find(ic => ic.name === iconName);
 		if (icon) {
@@ -23,7 +23,7 @@ export function addIconsCommand (iconNames: string[], props: CommandProps) {
 			} else {
 				console.log(`Icon was added: '${iconName}'`);
 				config.icons.push(iconName);
-				saveSvigConfig(config);
+				saveMiConfig(config);
 			}
 		} else {
 			console.log(`Icon not found: '${iconName}'`);
@@ -39,16 +39,16 @@ export function removeIconsCommand (iconNames: string[], props: CommandProps) {
 		console.log(`Please provide icons to remove!`); return;
 	}
 
-	const config = getSvigConfig();
+	const config = getMiConfig();
 	if (!config.icons || config.icons.length === 0) {
-		console.log(`No icons found in config: '${svigConfigPath}'`);
+		console.log(`No icons found in config: '${miConfigPath}'`);
 		return;
 	}
 
 	for (const iconName of iconNames) {
 		if (config.icons.includes(iconName)) {
 			config.icons = config.icons.filter(ic => ic !== iconName);
-			saveSvigConfig(config);
+			saveMiConfig(config);
 			console.log(`Icon was removed: '${iconName}'`);
 		} else {
 			console.log(`Icon not present in config: '${iconName}'`);
@@ -60,9 +60,9 @@ export function removeIconsCommand (iconNames: string[], props: CommandProps) {
 
 export function generateIconsCommand (props: CommandProps, overwrite: boolean) {
 	const { dirpath } = props;
-	const config = getSvigConfig();
+	const config = getMiConfig();
 	if (config.icons.length === 0) {
-		console.log(`No icons found in config: '${svigConfigPath}'`)
+		console.log(`No icons found in config: '${miConfigPath}'`)
 		return;
 	}
 
@@ -81,7 +81,7 @@ export function generateMasterComponentCommand (props: CommandProps, overwrite: 
 	const outputFilePath = getSvelteComponentPath("", dirpath);
 
 	try {
-		const config = getSvigConfig();
+		const config = getMiConfig();
 		generateMasterComponentOnDisk(config.icons, dirpath);
 	} catch (error) {
 		console.log(`\tError: ${error}`);

@@ -2,30 +2,30 @@ import fs from 'fs';
 
 
 
-export const svigConfigPath = "mi.config.json";
+export const miConfigPath = "mi.config.json";
 
-export interface SvigConfigDS {
+export interface MiConfigDS {
 	icons: string[]
 }
 
-export function getSvigConfig (): SvigConfigDS {
+export function getMiConfig (): MiConfigDS {
 	try {
-		const data = fs.readFileSync(svigConfigPath, 'utf8');
-		const config: SvigConfigDS = JSON.parse(data);
+		const data = fs.readFileSync(miConfigPath, 'utf8');
+		const config: MiConfigDS = JSON.parse(data);
 		return config;
 	} catch (error) {
-		const config: SvigConfigDS = {
+		const config: MiConfigDS = {
 			icons: []
 		}
 		return config;
 	}
 }
 
-export function saveSvigConfig (config: SvigConfigDS) {
+export function saveMiConfig (config: MiConfigDS) {
 	try {
 		config.icons = config.icons.sort();
 		const jsonString = JSON.stringify(config, null, 2); // Indented with 2 spaces
-		fs.writeFileSync(svigConfigPath, jsonString);
+		fs.writeFileSync(miConfigPath, jsonString);
 	} catch (error) {
 		console.log(`Error while writing json: ${error}`);
 	}

@@ -1,0 +1,18 @@
+# Source files
+material-icons/
+src/
+tsconfig.json
+*.py
+
+# Dev only
+*.log
+*.ts
+*.md~
+.vscode/
+.idea/
+tests/
+coverage/
+*.test.ts
+
+# Node/Build
+node_modules/
