@@ -1,0 +1,12 @@
+{
+  "name": "material-icon-generator",
+  "version": "0.1.0",
+  "description": "MaterialIcon component generator.",
+  "license": "MIT",
+  "author": "Ankur Seth",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
