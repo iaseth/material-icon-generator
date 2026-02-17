@@ -8,8 +8,8 @@
 		class?: ClassValue,
 		hidden?: boolean
 	}
-	let { icon, size=24, hidden=false, class: cls }: Props = $props();
-	let px = $derived(`${size}px`);
+	const { icon, size=24, hidden=false, class: cls }: Props = $props();
+	const px = $derived(`${size}px`);
 </script>
 
 <script lang="ts" module>
