@@ -2,7 +2,7 @@ import fs from 'fs';
 
 
 
-export const svigConfigPath = "svig.config.json";
+export const svigConfigPath = "mi.config.json";
 
 export interface SvigConfigDS {
 	icons: string[]

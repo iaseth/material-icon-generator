@@ -10,7 +10,7 @@ function dashedToCamelCase(str: string): string {
 }
 
 export function getSvelteFileName(title: string): string {
-	return `Svig${dashedToCamelCase(title)}Icon.svelte`;
+	return `Material${dashedToCamelCase(title)}Icon.svelte`;
 }
 
 export function getSvelteComponentPath(iconName: string, dirpath: string): string {
