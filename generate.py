@@ -30,7 +30,9 @@ class MaterialIcon:
 
 	@property
 	def fullname(self):
-		return f"{self.category}-{self.name}"
+		if self.category:
+			return f"{self.category}-{self.name}"
+		return self.name
 
 	@property
 	def pathd(self):
@@ -65,7 +67,24 @@ def print_icons(icons):
 
 def main():
 	icons = find_svgs()
-	icons = [icon for icon in icons if icon.category != 'two-tone']
+
+	filled_icons = [x for x in icons if x.category == 'filled']
+	outlined_icons = [x for x in icons if x.category == 'outlined']
+	round_icons = [x for x in icons if x.category == 'round']
+	sharp_icons = [x for x in icons if x.category == 'sharp']
+
+	default_icons = [MaterialIcon(icon.fullpath) for icon in outlined_icons]
+	for icon in default_icons:
+		icon.category = ""
+
+	icons = [
+		*default_icons,
+		*filled_icons,
+		*outlined_icons,
+		*round_icons,
+		*sharp_icons,
+	]
+
 	print(f"Found {len(icons)} icons")
 	print_icons(icons[:10])
 
