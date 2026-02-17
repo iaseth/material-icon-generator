@@ -18,7 +18,7 @@ function main() {
 	parser.add_argument('-d', '--dirpath', {
 		help: 'Output directory path',
 		metavar: 'DIRPATH',
-		default: "src/lib/components/svig"
+		default: "src/lib/components"
 	});
 	const [args, rest] = parser.parse_known_args();
 

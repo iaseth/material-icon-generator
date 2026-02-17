@@ -18,3 +18,4 @@ dist/
 temp
 
 svig.config.json
+src/lib

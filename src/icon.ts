@@ -7,7 +7,7 @@ import { getSvelteComponentPath } from "./utils.js";
 
 export interface IconDS {
 	name: string,
-	svg: string
+	pathd: string
 }
 
 const iconsJson = JSON.parse(readFile('data/icons.json'));
