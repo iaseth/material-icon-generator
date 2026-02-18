@@ -6,18 +6,13 @@ from pathlib import Path
 ICONS_DIRPATH = "material-icons/svg"
 BASE_DIR = Path(ICONS_DIRPATH).resolve()
 
-# precompile for speed (handles single or double quotes, any attr order)
-_PATH_D_RE = re.compile(
-	r"<path\b[^>]*\bd\s*=\s*(['\"])(.*?)\1",
-	re.IGNORECASE | re.DOTALL,
-)
+# precompile for speed if used repeatedly
+_PATH_D_RE = re.compile(r'<path\b[^>]*\bd="([^"]*)"', re.IGNORECASE)
 
-def extract_svg_pathd(svg_file: str) -> str | None:
-	with open(svg_file, "r", encoding="utf-8") as f:
+def extract_svg_paths(svg_path: str):
+	with open(svg_path, "r", encoding="utf-8") as f:
 		content = f.read()
-
-	m = _PATH_D_RE.search(content)
-	return m.group(2) if m else None
+	return _PATH_D_RE.findall(content)
 
 
 class MaterialIcon:
@@ -35,12 +30,12 @@ class MaterialIcon:
 		return self.name
 
 	@property
-	def pathd(self):
-		return extract_svg_pathd(self.fullpath)
+	def paths(self):
+		return extract_svg_paths(self.fullpath)
 
 	@property
 	def jo(self):
-		return dict(name=self.fullname, pathd=self.pathd)
+		return dict(name=self.fullname, paths=self.paths)
 
 	def __lt__(self, other):
 		return self.fullpath < other.fullpath
