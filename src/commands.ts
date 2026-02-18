@@ -4,7 +4,8 @@ import { getSvelteComponentPath } from './utils.js';
 
 
 export interface CommandProps {
-	dirpath: string
+	dirpath: string;
+	fallback: boolean;
 }
 
 
@@ -30,7 +31,7 @@ export function addIconsCommand (iconNames: string[], props: CommandProps) {
 		}
 	}
 
-	generateMasterComponentOnDisk(config.icons, dirpath);
+	generateMasterComponentOnDisk(config.icons, props);
 }
 
 export function removeIconsCommand (iconNames: string[], props: CommandProps) {
@@ -55,7 +56,7 @@ export function removeIconsCommand (iconNames: string[], props: CommandProps) {
 		}
 	}
 
-	generateMasterComponentOnDisk(config.icons, dirpath);
+	generateMasterComponentOnDisk(config.icons, props);
 }
 
 export function generateIconsCommand (props: CommandProps, overwrite: boolean) {
@@ -66,7 +67,7 @@ export function generateIconsCommand (props: CommandProps, overwrite: boolean) {
 		return;
 	}
 
-	generateMasterComponentOnDisk(config.icons, dirpath);
+	generateMasterComponentOnDisk(config.icons, props);
 }
 
 export function listIconsCommand (iconArr: IconDS[]) {
@@ -82,7 +83,7 @@ export function generateMasterComponentCommand (props: CommandProps, overwrite: 
 
 	try {
 		const config = getMiConfig();
-		generateMasterComponentOnDisk(config.icons, dirpath);
+		generateMasterComponentOnDisk(config.icons, props);
 	} catch (error) {
 		console.log(`\tError: ${error}`);
 		console.log(`\tCould not generate: '${outputFilePath}'`);

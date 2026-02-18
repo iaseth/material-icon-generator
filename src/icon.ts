@@ -2,6 +2,7 @@ import fs from "fs";
 import Handlebars from "handlebars";
 import { readFile } from "./fsutils.js";
 import { getSvelteComponentPath } from "./utils.js";
+import { CommandProps } from "./commands.js";
 
 
 
@@ -19,7 +20,8 @@ export function getTemplate (filename: string) {
 	return template;
 }
 
-export function generateMasterComponentOnDisk(iconNames: string[], dirpath: string, overwrite: boolean = true) {
+export function generateMasterComponentOnDisk(iconNames: string[], props: CommandProps, overwrite: boolean = true) {
+	const { dirpath, fallback } = props;
 	const outputFilePath = getSvelteComponentPath("", dirpath);
 
 	if (!overwrite && fs.existsSync(outputFilePath)) {

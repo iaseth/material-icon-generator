@@ -20,10 +20,15 @@ function main() {
 		metavar: 'DIRPATH',
 		default: "src/lib/components"
 	});
+	parser.add_argument('--fallback', {
+		help: 'Add fallback icon',
+		action: 'store_true'
+	});
 	const [args, rest] = parser.parse_known_args();
 
 	const props: CommandProps = {
-		dirpath: args.dirpath
+		dirpath: args.dirpath,
+		fallback: args.fallback
 	};
 
 	switch (args.command) {
@@ -54,4 +59,4 @@ function main() {
 	}
 }
 
-main()
+main();
