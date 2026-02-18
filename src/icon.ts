@@ -41,8 +41,10 @@ export function generateMasterComponentOnDisk(iconNames: string[], props: Comman
 
 		const renderedCode = masterTemplate({
 			nametype, iconsArray,
-			firstIcon, restIcons, unknownIcon
+			firstIcon, restIcons,
+			fallback, unknownIcon
 		});
+
 		fs.writeFileSync(outputFilePath, renderedCode);
 		console.log(`\tGenerated: '${outputFilePath}'`);
 	} catch (error) {
